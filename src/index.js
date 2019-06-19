@@ -5,8 +5,9 @@ import { createStore } from 'redux';
 import appReducers from './reducers/index';
 import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './assets/css/style.css';
+// import './assets/css/style.css';
 import './assets/css/font-awesome.min.css';
+
 
 const store = createStore(
     appReducers,

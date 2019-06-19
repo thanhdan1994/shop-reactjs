@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actAddToCart } from './../actions/index';
+import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 
 class ProductItem extends Component {
     constructor(props) {
@@ -31,9 +32,9 @@ class ProductItem extends Component {
                         <h3 className="title"><a href="javascript:void(0)">{this.props.product.title}</a></h3>
                         <div className="price">
                             $ {this.props.product.price}
-                    <span>$16.00</span>
+                            <span>$16.00</span>
                         </div>
-                        <a href="javascript:void(0)" className="add-to-cart" onClick={this.handleAddToCart}>ADD TO CART</a>
+                        <a href="javascript:void(0)" className="add-to-cart" onClick={this.handleAddToCart} data-toggle="modal" data-target="#modalAbandonedCart">ADD TO CART</a>
                     </div>
                 </div>
             </div>
@@ -48,7 +49,7 @@ const mapStateToProps = state => {
 
 const mapDispathToProps = (dispath, props) => {
     return {
-        onAddToCart : (product) => {
+        onAddToCart: (product) => {
             dispath(actAddToCart(product, 1));
         }
     }

@@ -8,6 +8,11 @@ class CartContainer extends Component {
         super(props)
         this.handleChangeQuantity = this.handleChangeQuantity.bind(this)
         this.handleRemoveProductInCart = this.handleRemoveProductInCart.bind(this)
+        this.handleCheckVoucher = this.handleCheckVoucher.bind(this)
+        this.handleChangeCode = this.handleChangeCode.bind(this)
+        this.state = {
+            code: '',
+        }
     }
     handleChangeQuantity(product, e) {
         const target = e.target;
@@ -37,6 +42,17 @@ class CartContainer extends Component {
             this.props.onRemoveProductInCart(product)
         }
     }
+
+    handleChangeCode(e) {
+        this.setState({code: e.target.value});
+    }
+
+    handleCheckVoucher(total, e) {
+        if (this.state.code === 'rightcode') {
+            total -= 500;
+            console.log(total);
+        }
+    }
     render() {
         var total = 0;
         return (
@@ -57,10 +73,10 @@ class CartContainer extends Component {
                     <div className="coupon col-md-5 col-sm-5 no-padding-left pull-left">
                         <div className="row">
                             <div className="col-6">
-                                <input type="text" className="form-control" placeholder="cupone code" />
+                                <input type="text" onChange={this.handleChangeCode} className="form-control" placeholder="cupone code" />
                             </div>
                             <div className="col-6">
-                                <input type="submit" className="btn btn-default" defaultValue="Use cupone" />
+                                <input type="submit" onClick={(e) => this.handleCheckVoucher(total, e)} className="btn btn-default" defaultValue="Use cupone" />
                             </div>
                         </div>
                     </div>

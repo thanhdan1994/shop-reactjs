@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from './components/Header';
 import ProductContainer from './containers/ProductContainer';
 import CartContainer from './containers/CartContainer';
+import DetailProduct from './containers/DetailProduct';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <div className="container">
           <Route exact path="/" component={ProductContainer}/>
           <Route path="/cart" component={CartContainer}/>
+          <Route path="/detail-product" component={DetailProduct}/>
         </div>
 
       </div>
