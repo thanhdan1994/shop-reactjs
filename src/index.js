@@ -5,8 +5,9 @@ import { createStore } from 'redux';
 import appReducers from './reducers/index';
 import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import './assets/css/style.css';
+import './assets/css/style.css';
 import './assets/css/font-awesome.min.css';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 
 const store = createStore(
@@ -16,7 +17,9 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <Router>
+            <App />
+        </Router>
     </Provider>, 
     document.getElementById('root')
 );

@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actChangeQuantity, actRemoveProductInCart } from '../actions/index';
-import Item from '../components/checkout/Item';
+import Item from '../components/cart/Item';
 
 class CartContainer extends Component {
     constructor(props) {
         super(props)
         this.handleChangeQuantity = this.handleChangeQuantity.bind(this)
         this.handleRemoveProductInCart = this.handleRemoveProductInCart.bind(this)
-        this.handleCheckVoucher = this.handleCheckVoucher.bind(this)
-        this.handleChangeCode = this.handleChangeCode.bind(this)
         this.state = {
             code: '',
         }
@@ -43,22 +42,16 @@ class CartContainer extends Component {
         }
     }
 
-    handleChangeCode(e) {
-        this.setState({code: e.target.value});
-    }
-
-    handleCheckVoucher(total, e) {
-        if (this.state.code === 'rightcode') {
-            total -= 500;
-            console.log(total);
-        }
-    }
     render() {
         var total = 0;
+        var countProductInCart = this.props.cart.length;
+        if (countProductInCart < 1) {
+            return <h1>giỏ hàng trống trơn</h1>
+        }
         return (
             <div className="card shopping-cart">
                 <div className="card-header bg-dark text-light">
-                    <a className="btn btn-outline-info btn-sm pull-right">Continiu shopping</a>
+                    <Link to="/" className="btn btn-outline-info btn-sm pull-right">Continiu shopping</Link>
                     <div className="clearfix" />
                 </div>
                 <div className="card-body">
@@ -70,16 +63,6 @@ class CartContainer extends Component {
                     })}
                 </div>
                 <div className="card-footer">
-                    <div className="coupon col-md-5 col-sm-5 no-padding-left pull-left">
-                        <div className="row">
-                            <div className="col-6">
-                                <input type="text" onChange={this.handleChangeCode} className="form-control" placeholder="cupone code" />
-                            </div>
-                            <div className="col-6">
-                                <input type="submit" onClick={(e) => this.handleCheckVoucher(total, e)} className="btn btn-default" defaultValue="Use cupone" />
-                            </div>
-                        </div>
-                    </div>
                     <div className="pull-right" style={{ margin: '10px' }}>
                         <a className="btn btn-outline-primary pull-right">Checkout</a>
                         <div className="pull-right" style={{ margin: '5px' }}>
