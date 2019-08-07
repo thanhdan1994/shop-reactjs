@@ -1,25 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { createStore } from 'redux';
-import appReducers from './reducers/index';
-import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import './assets/css/style.css';
-import './assets/css/font-awesome.min.css';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import 'babel-polyfill';
+import { BrowserRouter as Router, withRouter } from "react-router-dom";
+import { DataProvider } from './reducers/DataProvider';
 
+const ScrollToTop = ({ children }) => {
+  let pathname = location.pathname;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
-const store = createStore(
-    appReducers,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-
+  return children;
+};
+export default withRouter(ScrollToTop);
 ReactDOM.render(
-    <Provider store={store}>
-        <Router>
-            <App />
-        </Router>
-    </Provider>, 
-    document.getElementById('root')
+  <DataProvider>
+    <Router>
+      <ScrollToTop>
+        <App />
+      </ScrollToTop>
+    </Router>
+  </DataProvider>,
+  document.getElementById('root')
 );

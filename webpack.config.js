@@ -5,17 +5,12 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyPlugin = require('copy-webpack-plugin');
 const VENDOR_LIBS = [
     'axios',
-    // './src/assets/style.css',
-    // './src/static/js/start.min.js',
     'react',
     'react-dom',
-    'react-redux',
     'react-router-dom',
-    'redux',
-    'redux-thunk'
 ];
 const devServer = {
-    port : 3000,
+    port : 3001,
     open : true,
     disableHostCheck : true,
     historyApiFallback : true,

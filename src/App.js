@@ -1,17 +1,23 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Header from './components/Header';
 import HomeContainer from './containers/HomeContainer';
-import CartContainer from './containers/CartContainer';
+import CartCheckoutContainer from './containers/CartCheckoutContainer';
+import ProductDetailContainer from './containers/ProductDetailContainer';
+import ProductTypeContainer from './containers/ProductTypeContainer';
+import { Helmet } from "react-helmet";
 
 function App() {
   return (
     <React.Fragment>
+      <Helmet>
+        <title>Đồng hồ, laptop chính hãng...</title>
+      </Helmet>
       <Header />
-      <main role="main" className="container-fluid">
-        <Route exact path="/" component={HomeContainer}/>
-        <Route path="/cart" component={CartContainer}/>
-      </main>
+      <Route exact path="/" component={HomeContainer} />
+      <Route path={`/:name-p-:id`} component={ProductDetailContainer} />
+      <Route path="/cart-checkout" component={CartCheckoutContainer} />
+      <Route path="/:producttype-pt-:id" component={ProductTypeContainer} />
     </React.Fragment>
   );
 }

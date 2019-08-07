@@ -1,7 +1,21 @@
-var data = JSON.parse(localStorage.getItem('CART'));
-var initialState = data ? data : [];
+import React, { useReducer } from 'react';
 
-const cart = (state = initialState, action) => {
+const DataContext = React.createContext();
+
+var findProductInCart = (cart, product) => {
+    var index = -1;
+    if (cart.length > 0) {
+        for (var i = 0; i < cart.length; i++) {
+            if (cart[i].product._id === product._id) {
+                index = i;
+                break;
+            }
+        }
+    }
+    return index;
+}
+
+function CartReducer(state, action) {
     var { product, quantity } = action;
     var index = -1; // Không tìm thấy => index = -1
     switch (action.type) {
@@ -35,17 +49,16 @@ const cart = (state = initialState, action) => {
     }
 }
 
-var findProductInCart = (cart, product) => {
-    var index = -1;
-    if (cart.length > 0) {
-        for (var i = 0; i < cart.length; i++) {
-            if (cart[i].product.id === product.id) {
-                index = i;
-                break;
-            }
-        }
-    }
-    return index;
+function DataProvider(props) {
+    var cartInitial = JSON.parse(localStorage.getItem('CART'));
+    const initialState = cartInitial ? cartInitial : []
+    const [cart, dispatch] = useReducer(CartReducer, initialState);
+    return (
+        // new
+        <DataContext.Provider value={{ cart, dispatch }}>
+            {props.children}
+        </DataContext.Provider>
+    );
 }
 
-export default cart
+export { DataContext, DataProvider }
