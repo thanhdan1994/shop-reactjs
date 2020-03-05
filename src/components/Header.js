@@ -18,20 +18,20 @@ function Header() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <LinkCustom path="/dien-thoai-pt-5d387d0067840603942c25f4" children="Điện thoại" className="nav-link" />
-                    <LinkCustom path="/dong-ho-pt-5d38817847e17012e4c12962" children="Đồng hồ" className="nav-link" />
-                    {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                    <LinkCustom path="/dien-thoai-pt-dienthoai" children="Điện thoại" className="nav-link" />
+                    <LinkCustom path="/dong-ho-pt-dongho" children="Đồng hồ" className="nav-link" />
+                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                         <NavDropdown.Item eventKey="/action/3.1">Action</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                    </NavDropdown> */}
+                    </NavDropdown>
                 </Nav>
-                {/* <Form inline>
+                <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                     <Button variant="outline-success">Search</Button>
-                </Form> */}
+                </Form>
             </Navbar.Collapse>
         </Navbar>
     )

@@ -9,8 +9,39 @@ function ProductDetailContainer({ match }) {
     const { dispatch } = useContext(DataContext)
     useEffect(() => {
         async function fetchData() {
-            const detail = await axios('http://localhost:3000/products/' + match.params.id);
-            const smartphone = await axios(`http://localhost:3000/products?productType=${detail.data.productType._id}&size=10&exclude=${detail.data._id}`);
+            const detail = {
+                data : {
+                    name: 'Apple iPhone 11 1 Sim 64GB',
+                    priceCurrency: 15575000,
+                    brand: 'Apple',
+                    images: 'https://stcv4.hnammobile.com//uploads/products/colors/2/apple-iphone-11-1-sim-64gb-01573206008.jpg'
+                }
+            };
+            const smartphone = {
+                data: [
+                    {
+                        _id: 4,
+                        name: 'Apple iPhone 11 1 Sim 64GB',
+                        image: 'https://stcv4.hnammobile.com//uploads/products/colors/2/apple-iphone-11-1-sim-64gb-01573206008.jpg',
+                        price: 18200000,
+                        priceCurrent: 15575000
+                    },
+                    {
+                        _id: 5,
+                        name: 'GUESS GLITTER COLLECTION IPHONE 11 CASE',
+                        image: 'https://www.mytrendyphone.eu/images/Guess-Glitter-Collection-Case-for-iPhone-11-Gold-3700740461884-30092019-01-p.jpg',
+                        price: 3200000,
+                        priceCurrent: 2575000
+                    },
+                    {
+                        _id: 6,
+                        name: 'iPhone 11 Pro Max',
+                        image: 'https://cdn.tmobile.com/content/dam/t-mobile/en-p/cell-phones/apple/Apple-iPhone-11-Pro-Max/Midnight-Green/Apple-iPhone-11-Pro-Max-Midnight-Green-frontimage.jpg',
+                        price: 15000000,
+                        priceCurrent: 12900000
+                    },
+                ]
+            };
             setData({ detail: detail.data, products: smartphone.data });
         }
         fetchData();

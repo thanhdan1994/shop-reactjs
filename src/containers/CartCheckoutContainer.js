@@ -10,7 +10,31 @@ function CartCheckoutContainer() {
     const { cart, dispatch } = useContext(DataContext);
     useEffect(() => {
         async function fetchData() {
-            const products = await axios(`http://localhost:3000/products?size=4`);
+            const products = {
+                data: [
+                    {
+                        _id: 1,
+                        name: 'CLASSIC PETITE MELROSE',
+                        image: 'https://danielwellington.shop/wp-content/uploads/2017/09/petit-melrose-white.jpg',
+                        price: 3200000,
+                        priceCurrent: 2575000
+                    },
+                    {
+                        _id: 2,
+                        name: 'CLASSIC BLACK READING',
+                        image: 'https://danielwellington.shop/wp-content/uploads/2017/09/dw-classic-black-reading-40rg.jpg',
+                        price: 3800000,
+                        priceCurrent: 3500000
+                    },
+                    {
+                        _id: 3,
+                        name: 'CLASSIC PETITE BLACK ST MAWES',
+                        image: 'https://danielwellington.shop/wp-content/uploads/2017/09/dw-petite-28-st-mawes-black-rg-cat.jpg',
+                        price: 2900000,
+                        priceCurrent: 2600000
+                    }
+                ]
+            }
             setData({ ...data, products: products.data });
         }
         fetchData();

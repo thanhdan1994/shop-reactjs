@@ -1,15 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import {ChangeToSlug} from './../common/Helpers';
+import { ChangeToSlug } from './../common/Helpers';
 import { Helmet } from "react-helmet";
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function ProductTypeContainer({ match }) {
-    console.log(match)
     const [data, setData] = useState({ products: [] });
     useEffect(() => {
         async function fetchData() {
-            const products = await axios(`http://localhost:3000/products?productType=${match.params.id}&size=10`);
+            const products = {
+                data: [
+                    {
+                        _id: 1,
+                        name: 'CLASSIC PETITE MELROSE',
+                        image: 'https://danielwellington.shop/wp-content/uploads/2017/09/petit-melrose-white.jpg',
+                        price: 3200000,
+                        priceCurrent: 2575000
+                    },
+                    {
+                        _id: 3,
+                        name: 'CLASSIC PETITE BLACK ST MAWES',
+                        image: 'https://danielwellington.shop/wp-content/uploads/2017/09/dw-petite-28-st-mawes-black-rg-cat.jpg',
+                        price: 2900000,
+                        priceCurrent: 2600000
+                    },
+                    {
+                        _id: 5,
+                        name: 'GUESS GLITTER COLLECTION IPHONE 11 CASE',
+                        image: 'https://www.mytrendyphone.eu/images/Guess-Glitter-Collection-Case-for-iPhone-11-Gold-3700740461884-30092019-01-p.jpg',
+                        price: 3200000,
+                        priceCurrent: 2575000
+                    },
+                ]
+            };
             setData({ products: products.data });
         }
         fetchData();
